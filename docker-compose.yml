@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  skillforge-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - INFERENCE_PROVIDER_NAME=backboard
+      - INFERENCE_BASE_URL=https://app.backboard.io/api
+      - INFERENCE_API_KEY=${INFERENCE_API_KEY}
+      - INFERENCE_MODEL=meta-llama/llama-3.1-8b-instruct
+    restart: unless-stopped
